@@ -70,3 +70,35 @@ bt.insert(5)
 bt.read(5)  # Returns True
 bt.delete(5)
 ```
+
+## Performance Analysis
+
+The repository includes tools to analyze and compare the performance characteristics of these data structures. You can generate graphs showing time and memory performance for operations on different input sizes.
+
+### Prerequisites
+
+Install required packages:
+
+```bash
+pip install matplotlib memory_profiler
+```
+
+### Running Analysis
+
+1. Time Performance Analysis:
+
+```bash
+python3 performance_analysis.py
+```
+
+This will generate `graphs/insertion_performance.png` showing insertion time comparison across data structures.
+
+2. Memory Usage Analysis:
+
+```bash
+python3 memory_analysis.py
+```
+
+This will generate `graphs/memory_usage.png` showing memory consumption comparison.
+
+Both analyses test the data structures with increasing input sizes (1,000 to 1,000,000 elements) and use logarithmic scales to visualize performance differences. The graphs will be saved in the `graphs` directory.
