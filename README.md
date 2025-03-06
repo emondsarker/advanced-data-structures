@@ -1,6 +1,30 @@
 # Advanced Data Structures
 
-This repository contains implementations of three advanced data structures in Python:
+This repository contains implementations of three advanced data structures in Python.
+
+## Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/advanced-data-structures.git
+cd advanced-data-structures
+```
+
+2. Create and activate a virtual environment (recommended):
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Unix/macOS
+# or
+.\venv\Scripts\activate  # On Windows
+```
+
+3. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 
 ## Red-Black Tree
 
@@ -74,14 +98,6 @@ bt.delete(5)
 ## Performance Analysis
 
 The repository includes tools to analyze and compare the performance characteristics of these data structures. You can generate graphs showing time and memory performance for operations on different input sizes.
-
-### Prerequisites
-
-Install required packages:
-
-```bash
-pip install matplotlib memory_profiler
-```
 
 ### Running Analysis
 
