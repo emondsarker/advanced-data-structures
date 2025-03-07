@@ -1,6 +1,6 @@
 # Advanced Data Structures
 
-This repository contains implementations of three advanced data structures in Python.
+This repository contains implementations of three advanced data structures in Python, along with comprehensive benchmarking and analysis tools.
 
 ## Setup
 
@@ -26,7 +26,9 @@ source venv/bin/activate  # On Unix/macOS
 pip install -r requirements.txt
 ```
 
-## Red-Black Tree
+## Data Structures
+
+### Red-Black Tree
 
 A self-balancing binary search tree that maintains balance through node coloring:
 
@@ -41,7 +43,7 @@ Operations:
 - `read(data)`: Check if data exists
 - `delete(data)`: Remove data
 
-## XOR Linked List
+### XOR Linked List
 
 A memory-efficient doubly linked list that uses XOR of addresses to store both previous and next pointers in a single field:
 
@@ -55,7 +57,7 @@ Operations:
 - `read(position)`: Read data at position
 - `delete(position)`: Delete node at position
 
-## B-tree
+### B-tree
 
 A self-balancing tree data structure that maintains sorted data and is optimized for systems that read and write large blocks of data:
 
@@ -97,24 +99,70 @@ bt.delete(5)
 
 ## Performance Analysis
 
-The repository includes tools to analyze and compare the performance characteristics of these data structures. You can generate graphs showing time and memory performance for operations on different input sizes.
+The repository includes comprehensive tools for analyzing and comparing the performance characteristics of these data structures.
 
-### Running Analysis
+### Dataset Generation
 
-1. Time Performance Analysis:
-
-```bash
-python3 performance_analysis.py
-```
-
-This will generate `graphs/insertion_performance.png` showing insertion time comparison across data structures.
-
-2. Memory Usage Analysis:
+First, generate test datasets of various sizes:
 
 ```bash
-python3 memory_analysis.py
+python generate_datasets.py
 ```
 
-This will generate `graphs/memory_usage.png` showing memory consumption comparison.
+This creates standardized datasets in the `datasets` directory:
 
-Both analyses test the data structures with increasing input sizes (1,000 to 1,000,000 elements) and use logarithmic scales to visualize performance differences. The graphs will be saved in the `graphs` directory.
+- Small datasets: 1,000, 5,000, and 10,000 elements (for quick tests)
+- Medium datasets: 50,000 and 100,000 elements (for thorough testing)
+- Large datasets: 500,000 and 1,000,000 elements (for stress testing)
+
+### Running Performance Analysis
+
+Run the comprehensive benchmark suite:
+
+```bash
+python benchmark_data_structures.py
+```
+
+This will:
+
+1. Test each data structure with increasing dataset sizes
+2. Measure performance for insertion, search, and deletion operations
+3. Generate performance graphs in the `graphs` directory:
+   - `insertion_performance.png`: Comparison of insertion times
+   - `search_performance.png`: Comparison of search times
+   - `deletion_performance.png`: Comparison of deletion times
+4. Save detailed results to `performance_results.csv` for further analysis
+
+### Memory Analysis
+
+Analyze memory consumption:
+
+```bash
+python memory_analysis.py
+```
+
+This generates `graphs/memory_usage.png` showing memory consumption comparison across data structures.
+
+## Test Coverage
+
+The repository includes comprehensive unit tests for each data structure:
+
+```bash
+python -m pytest tests/
+```
+
+Tests cover:
+
+- Basic operations (insert, read, delete)
+- Edge cases and error handling
+- Structure-specific properties (e.g., Red-Black Tree balancing, B-tree degree constraints)
+
+## Performance Results
+
+The benchmarking process tests each data structure with datasets ranging from 100,000 to 1,000,000 elements. Results are saved in both visual (graphs) and tabular (CSV) formats for detailed analysis.
+
+Key performance characteristics:
+
+- B-Tree: Optimized for systems that read/write large blocks of data
+- Red-Black Tree: Balanced performance across all operations
+- XOR Linked List: Memory-efficient but with linear-time search operations
