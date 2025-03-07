@@ -1,11 +1,12 @@
 import time
 import matplotlib.pyplot as plt
+import csv
 from data_structures.b_tree import BTree
 from data_structures.red_black_tree import RedBlackTree
 from data_structures.xor_linked_list import XORLinkedList
 from data_structures.dataset_generator import DatasetGenerator
 
-def benchmark_data_structure_operations(data_structure, dataset):
+def benchmark_data_structures(data_structure, dataset):
     """Test insertion, search, and deletion operations in sequence."""
     results = {'insertion': 0, 'search': 0, 'deletion': 0}
     
@@ -23,24 +24,24 @@ def benchmark_data_structure_operations(data_structure, dataset):
     results['insertion'] = time.time() - start_time
     print(f"  Insertion: {results['insertion']:.2f} seconds")
     
-    # Test search
+    # Test search (now that values are in the structure)
     print("  Testing search...")
     start_time = time.time()
     for value in dataset:
         try:
             if isinstance(data_structure, XORLinkedList):
-                data_structure.read(0) 
+                data_structure.read(0)  # Read from beginning for XOR list
             else:
-                data_structure.read(value)
+                data_structure.read(value)  # Search by value for trees
         except (ValueError, IndexError):
             continue  # Skip if value not found
     results['search'] = time.time() - start_time
     print(f"  Search: {results['search']:.2f} seconds")
     
-    # Test deletion 
+    # Test deletion (values are still in the structure)
     print("  Testing deletion...")
     start_time = time.time()
-    dataset_copy = dataset.copy()  
+    dataset_copy = dataset.copy()  # Make a copy for deletion
     if not isinstance(data_structure, XORLinkedList):
         # For trees, delete in sorted order to maintain balance
         dataset_copy.sort()
@@ -48,15 +49,34 @@ def benchmark_data_structure_operations(data_structure, dataset):
     for value in dataset_copy:
         try:
             if isinstance(data_structure, XORLinkedList):
-                data_structure.delete(0)  
+                data_structure.delete(0)  # Delete from beginning for XOR list
             else:
-                data_structure.delete(value)  
+                data_structure.delete(value)  # Delete by value for trees
         except (ValueError, IndexError):
             continue  # Skip if value not found
     results['deletion'] = time.time() - start_time
     print(f"  Deletion: {results['deletion']:.2f} seconds")
     
     return results
+
+def save_results_to_csv(results, sizes):
+    """Save performance results to a CSV file."""
+    with open('performance_results.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        # Write header
+        writer.writerow(['Dataset Size', 'Data Structure', 'Operation', 'Time (seconds)'])
+        
+        # Write data
+        for size_idx, size in enumerate(sizes):
+            for structure in results:
+                for operation in ['insertion', 'search', 'deletion']:
+                    writer.writerow([
+                        size,
+                        structure,
+                        operation,
+                        results[structure][operation][size_idx]
+                    ])
+    print("\nResults saved to performance_results.csv")
 
 def run_performance_analysis():
     """Run performance analysis for all operations on increasing dataset sizes."""
@@ -81,11 +101,14 @@ def run_performance_analysis():
         for name, create_structure in structures.items():
             print(f"\nTesting {name}...")
             structure = create_structure()
-            operation_times = benchmark_data_structure_operations(structure, dataset)
+            operation_times = benchmark_data_structures(structure, dataset)
             
             # Store results
             for operation, time_taken in operation_times.items():
                 results[name][operation].append(time_taken)
+    
+    # Save results to CSV
+    save_results_to_csv(results, sizes)
     
     # Plot results for each operation
     operations = ['insertion', 'search', 'deletion']
