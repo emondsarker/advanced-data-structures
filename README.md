@@ -30,13 +30,6 @@ pip install -r requirements.txt
 
 ### Red-Black Tree
 
-A self-balancing binary search tree that maintains balance through node coloring:
-
-- Every node is either red or black
-- Root is black
-- No two adjacent red nodes
-- Every path from root to leaf has same number of black nodes
-
 Operations:
 
 - `insert(data)`: Insert new data
@@ -45,12 +38,6 @@ Operations:
 
 ### XOR Linked List
 
-A memory-efficient doubly linked list that uses XOR of addresses to store both previous and next pointers in a single field:
-
-- Uses single pointer field to store both next and previous node addresses
-- Requires careful memory management
-- Saves memory by storing two pointers in space of one
-
 Operations:
 
 - `insert(data, position=None)`: Insert at end, beginning, or specific position
@@ -58,13 +45,6 @@ Operations:
 - `delete(position)`: Delete node at position
 
 ### B-tree
-
-A self-balancing tree data structure that maintains sorted data and is optimized for systems that read and write large blocks of data:
-
-- Every node has at most m children
-- Non-leaf nodes (except root) have at least ⌈m/2⌉ children
-- All leaves appear at same level
-- Optimized for disk operations
 
 Operations:
 
@@ -133,16 +113,6 @@ This will:
    - `deletion_performance.png`: Comparison of deletion times
 4. Save detailed results to `performance_results.csv` for further analysis
 
-### Memory Analysis
-
-Analyze memory consumption:
-
-```bash
-python memory_analysis.py
-```
-
-This generates `graphs/memory_usage.png` showing memory consumption comparison across data structures.
-
 ## Test Coverage
 
 The repository includes comprehensive unit tests for each data structure:
@@ -160,9 +130,3 @@ Tests cover:
 ## Performance Results
 
 The benchmarking process tests each data structure with datasets ranging from 100,000 to 1,000,000 elements. Results are saved in both visual (graphs) and tabular (CSV) formats for detailed analysis.
-
-Key performance characteristics:
-
-- B-Tree: Optimized for systems that read/write large blocks of data
-- Red-Black Tree: Balanced performance across all operations
-- XOR Linked List: Memory-efficient but with linear-time search operations
