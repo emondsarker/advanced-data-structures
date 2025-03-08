@@ -26,6 +26,58 @@ source venv/bin/activate  # On Unix/macOS
 pip install -r requirements.txt
 ```
 
+## Project Structure
+
+```
+advanced-data-structures/
+├── data_structures/           # Core data structure implementations
+│   ├── __init__.py
+│   ├── b_tree.py             # B-tree implementation
+│   ├── dataset_generator.py   # Dataset generation utilities
+│   ├── red_black_tree.py     # Red-Black tree implementation
+│   └── xor_linked_list.py    # XOR Linked List implementation
+├── datasets/                  # Generated test datasets
+│   ├── dataset_100000.json
+│   ├── large_500000.json
+│   ├── large_1000000.json
+│   ├── medium_50000.json
+│   ├── medium_100000.json
+│   ├── small_1000.json
+│   ├── small_5000.json
+│   └── small_10000.json
+├── graphs/                    # Performance visualization graphs
+│   ├── deletion_performance.png
+│   ├── insertion_performance.png
+│   └── search_performance.png
+├── tests/                     # Unit tests
+│   ├── test_b_tree.py
+│   ├── test_red_black_tree.py
+│   └── test_xor_linked_list.py
+├── benchmark_data_structures.py  # Performance benchmarking script
+├── generate_datasets.py          # Dataset generation script
+├── performance_results.csv       # Benchmark results
+├── requirements.txt             # Project dependencies
+└── README.md                    # Project documentation
+```
+
+## Dependencies
+
+The project requires the following Python packages:
+
+```
+contourpy==1.3.1      # Contour calculations for matplotlib
+cycler==0.12.1        # Composable style cycles
+fonttools==4.56.0     # Font file manipulation
+kiwisolver==1.4.8     # Efficient constraint solving
+matplotlib==3.10.1    # Plotting and visualization
+numpy==2.2.3          # Numerical computations
+packaging==24.2       # Core packaging utilities
+pillow==11.1.0        # Image processing
+pyparsing==3.2.1      # Parsing utilities
+python-dateutil==2.9.0.post0  # Date utilities
+six==1.17.0           # Python 2/3 compatibility
+```
+
 ## Data Structures
 
 ### Red-Black Tree
